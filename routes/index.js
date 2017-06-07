@@ -1,16 +1,22 @@
 var express = require('express');
 var router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+    res.render('index');
 });
-
+//Pagina de ayuda
+router.get('/help',function(req, res, next){
+    res.render('help');
+});
 // Pagina de creditos
 router.get('/author', function(req, res, next) {
     res.render('author');
+
 });
 
 
@@ -29,11 +35,7 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
-
-//Página de ayuda
-router.get('/help', function(req, res, next) {
-    res.render('help');
-});
-
+router.get('/quizzes/randomplay',  quizController.randomplay);
+router.get('/quizzes/randomcheck/:quizId(\\d+)',  quizController.randomcheck);
 
 module.exports = router;
